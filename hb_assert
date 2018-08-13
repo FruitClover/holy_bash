@@ -5,6 +5,7 @@ hb::print_trace() {
     done
 }
 
+# Check if $1 == $2
 hb::assert_eq() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
