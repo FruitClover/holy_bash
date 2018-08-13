@@ -1,0 +1,7 @@
+# print $1 argument + dash line below:
+# hb::print_dashed "Hello"
+# -> Hello
+# -> -----
+hb::print_dashed() {
+    printf '\n%s\n%s\n' "$1" "${1//?/-}"
+}
