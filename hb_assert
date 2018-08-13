@@ -1,0 +1,22 @@
+hb::print_trace() {
+    local lvl=0
+    while [[ ! "${FUNCNAME[((lvl+=1))]}" == '' ]]; do
+        printf ' #%s %s (%s:%s)\n' "$((lvl-1))" "${FUNCNAME[$lvl]}" "${BASH_SOURCE[$lvl]}" "${BASH_LINENO[$lvl]}"
+    done
+}
+
+hb::assert_eq() {
+    if [[ "$1" == "$2" ]]; then
+        ((pass+=1))
+        status=$'\e[32m✔'
+    else
+        ((fail+=1))
+        status=$'\e[31m✖'
+        local err="(\"$1\" != \"$2\")"
+    fi
+
+    printf ' %s\e[m | %s\n' "$status" "${FUNCNAME[1]/test_} $err"
+    if [[ -n "$err" ]]; then
+        hb::print_trace
+    fi
+}
