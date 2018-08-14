@@ -1,3 +1,7 @@
+readonly hb_assert_pass_mark=$'\e[32m✔'
+readonly hb_assert_fail_mark=$'\e[31m✖'
+readonly hb_assert_print_trace=yes
+
 hb::print_trace() {
     local lvl=0
     while [[ ! "${FUNCNAME[((lvl+=1))]}" == '' ]]; do
@@ -9,15 +13,15 @@ hb::print_trace() {
 hb::assert_eq() {
     if [[ "$1" == "$2" ]]; then
         ((pass+=1))
-        status=$'\e[32m✔'
+        status="$hb_assert_pass_mark"
     else
         ((fail+=1))
-        status=$'\e[31m✖'
+        status="$hb_assert_fail_mark"
         local err="(\"$1\" != \"$2\")"
     fi
 
     printf ' %s\e[m | %s\n' "$status" "${FUNCNAME[1]/test_} $err"
-    if [[ -n "$err" ]]; then
+    if [[ -n "$err" && "$hb_assert_print_trace" == 'yes' ]]; then
         hb::print_trace
     fi
 }
