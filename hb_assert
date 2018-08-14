@@ -1,7 +1,7 @@
 hb::print_trace() {
     local lvl=0
     while [[ ! "${FUNCNAME[((lvl+=1))]}" == '' ]]; do
-        printf ' #%s %s (%s:%s)\n' "$((lvl-1))" "${FUNCNAME[$lvl]}" "${BASH_SOURCE[$lvl]}" "${BASH_LINENO[$lvl]}"
+        printf ' #%s %s (%s:%s)\n' "$((lvl-1))" "${FUNCNAME[$lvl]}" "${BASH_SOURCE[$lvl+1]}" "${BASH_LINENO[$lvl]}"
     done
 }
 
