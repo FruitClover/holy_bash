@@ -1,8 +1,10 @@
+readonly hb_test_function_prefix='test_'
+
 hb::run_all_tests() {
     # Generate the list of tests to run.
     IFS=$'\n' read -d "" -ra funcs < <(declare -F)
     for func in "${funcs[@]//declare -f }"; do
-        [[ "$func" == test_* ]] && "$func";
+        [[ "$func" == "$hb_test_function_prefix"* ]] && "$func";
     done
 
     comp="Completed $((fail+pass)) tests. ${pass:-0} passed, ${fail:-0} failed."
