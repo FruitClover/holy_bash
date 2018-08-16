@@ -12,10 +12,10 @@ hb::print_trace() {
 # Check if $1 == $2
 hb::assert_eq() {
     if [[ "$1" == "$2" ]]; then
-        ((pass+=1))
+        ((__hb_test_count_pass+=1))
         status="$hb_assert_pass_mark"
     else
-        ((fail+=1))
+        ((__hb_test_count_fail+=1))
         status="$hb_assert_fail_mark"
         local err="(\"$1\" != \"$2\")"
     fi

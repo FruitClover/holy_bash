@@ -7,7 +7,7 @@ hb::run_all_tests() {
         [[ "$func" == "$hb_test_function_prefix"* ]] && "$func";
     done
 
-    comp="Completed $((fail+pass)) tests. ${pass:-0} passed, ${fail:-0} failed."
+    comp="Completed $((__hb_test_count_fail+__hb_test_count_pass)) tests. ${__hb_test_count_pass:-0} passed, ${__hb_test_count_fail:-0} failed."
     printf '%s\n%s\n\n' "${comp//?/-}" "$comp"
 
     # If a test failed, exit with '1'.
