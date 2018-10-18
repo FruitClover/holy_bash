@@ -5,3 +5,27 @@
 hb::print_dashed() {
     printf '\n%s\n%s\n' "$1" "${1//?/-}"
 }
+# Test props
+hb::bold_str() {
+    printf '\e[1m%s\e[m' "$1"
+}
+
+hb::faint_str() {
+    printf '\e[2m%s\e[m' "$1"
+}
+
+hb::italic_str() {
+    printf '\e[3m%s\e[m' "$1"
+}
+
+hb::underline_str() {
+    printf '\e[4m%s\e[m' "$1"
+}
+
+hb::slow_blink_str() {
+    printf '\e[5m%s\e[m' "$1"
+}
+
+hb::swap_bg_str() {
+    printf '\e[7m%s\e[m' "$1"
+}

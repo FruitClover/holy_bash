@@ -20,5 +20,25 @@ test_dashed_print() {
     hb::assert_eq "$res" $''
 }
 
+test_print_str() {
+    hb::bold_str "bold"
+    printf '\n'
+
+    hb::faint_str "faint"
+    printf '\n'
+
+    hb::italic_str "italic"
+    printf '\n'
+
+    hb::underline_str "underline"
+    printf '\n'
+
+    hb::slow_blink_str "slow_blink"
+    printf '\n'
+
+    hb::swap_bg_str "swap_bg"
+    printf '\n'
+}
+
 
 hb::run_all_tests
