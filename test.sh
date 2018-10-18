@@ -50,6 +50,12 @@ test_progress_bar() {
     done
 }
 
+test_get_functions() {
+    printf '\nAll functions:\n'
+    hb::get_functions
+    printf '\nEnd\n'
+}
+
 
 
 hb::run_all_tests

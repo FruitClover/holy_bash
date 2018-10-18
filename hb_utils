@@ -42,3 +42,9 @@ hb::progress_bar() {
 
     printf '%s\r' "[${prog// /-}${total}]"
 }
+
+hb::get_functions() {
+    # Usage: get_functions
+    IFS=$'\n' read -d "" -ra functions < <(declare -F)
+    printf '%s\n' "${functions[@]//declare -f }"
+}
