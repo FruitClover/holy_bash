@@ -40,5 +40,16 @@ test_print_str() {
     printf '\n'
 }
 
+test_progress_bar() {
+    for ((i=0;i<=100;i++)); do
+        # Pure bash micro sleeps (for the example).
+        (:;:) && (:;:) && (:;:) && (:;:) && (:;:)
+
+        # Print the bar.
+        hb::progress_bar "$i" "10"
+    done
+}
+
+
 
 hb::run_all_tests

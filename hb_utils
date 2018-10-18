@@ -29,3 +29,16 @@ hb::slow_blink_str() {
 hb::swap_bg_str() {
     printf '\e[7m%s\e[m' "$1"
 }
+
+# Usage: bar 1 10
+#            ^----- Elapsed Percentage (0-100).
+#               ^-- Total length in chars.
+hb::progress_bar() {
+    ((elapsed=$1*$2/100))
+
+    # Create the bar with spaces.
+    printf -v prog  "%${elapsed}s"
+    printf -v total "%$(($2-elapsed))s"
+
+    printf '%s\r' "[${prog// /-}${total}]"
+}
